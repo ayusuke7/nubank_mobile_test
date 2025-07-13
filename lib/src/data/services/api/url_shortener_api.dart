@@ -1,7 +1,7 @@
 import '../../../config/http/client/client.dart';
 import '../../../config/http/client/client_request.dart';
 import '../../../core/log/log_mixin.dart';
-import '../../../domain/enitites/alias_entity.dart';
+import '../../../domain/entities/alias_entity.dart';
 
 class UrlShortenerApi with LogMixin {
   UrlShortenerApi({
