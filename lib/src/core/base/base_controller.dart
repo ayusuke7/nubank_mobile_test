@@ -13,9 +13,9 @@ abstract class BaseController<T extends BaseState>
   @override
   T get value => _stateNotifier.value;
 
-  /// Cria uma instância de `BaseController` com um estado inicial fornecido.
+  /// create instance of `BaseController` with initial state [T].
   ///
-  /// [initialState] O estado inicial para o controlador.
+  /// [initialState] initial state for the controller.
   BaseController(T initialState) {
     _stateNotifier = ValueNotifier<T>(initialState);
     initController();
@@ -24,7 +24,7 @@ abstract class BaseController<T extends BaseState>
   @mustCallSuper
   initController() {}
 
-  /// Converte de [BaseController] para [stream].
+  /// Convert from [BaseController] to [stream].
   Stream<T> asStream() {
     late StreamController<T> controller;
 
@@ -44,25 +44,25 @@ abstract class BaseController<T extends BaseState>
     return controller.stream;
   }
 
-  /// Adiciona um listener que será chamado sempre que o estado mudar.
+  /// Added a listener that will be called every time the state changes.
   ///
-  /// [listener] A função de callback a ser chamada nas mudanças de estado.
+  /// [listener] Callback function to be called when the state changes.
   @override
   void addListener(VoidCallback listener) {
     _stateNotifier.addListener(listener);
   }
 
-  /// Remove um listener previamente adicionado.
+  /// Remove listener added with [addListener].
   ///
-  /// [listener] A função de callback a ser removida.
+  /// [listener] The listener to be removed.
   @override
   void removeListener(VoidCallback listener) {
     _stateNotifier.removeListener(listener);
   }
 
-  /// Atualiza o estado atual com um novo estado.
+  /// Update the state with the new state.
   ///
-  /// [newState] O novo estado para atualizar.
+  /// [newState] The new state to be updated.
   void update(T newState) {
     middleware(newState);
   }
@@ -71,13 +71,13 @@ abstract class BaseController<T extends BaseState>
     _stateNotifier.value = newState;
   }
 
-  /// Middleware para interceptar o estado antes de atualizar.
+  /// Middleware for update the state.
   @protected
   void middleware(T newState) {
     _update(newState);
   }
 
-  /// Libera os recursos.
+  /// Dispose the controller.
   void dispose() {
     _stateNotifier.dispose();
   }

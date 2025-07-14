@@ -11,6 +11,9 @@ class UrlShortenerApi with LogMixin {
   final Client client;
   final String baseUrl = 'https://url-shortener-server.onrender.com/api';
 
+  /// Create new alias for [url]
+  /// Returns [AliasEntity] or null
+  /// Not throws any exceptions instead returns null
   Future<AliasEntity?> createAlias(String url) async {
     try {
       final response = await client.post(
@@ -27,6 +30,9 @@ class UrlShortenerApi with LogMixin {
     return null;
   }
 
+  /// Get URL from alias [alias]
+  /// Returns [String] or null
+  /// Not throws any exceptions instead returns null
   Future<String?> getUrlFromAlias(String alias) async {
     try {
       final response = await client.get(

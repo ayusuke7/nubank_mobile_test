@@ -11,21 +11,21 @@ class HomeController extends ValueNotifier<HomeState> {
     required this.aliasRepository,
   }) : super(HomeState());
 
-  void createAlias(String url) async {
+  Future<void> createAlias(String url) async {
     value = value.copyWith(status: StateStatus.loading);
     final result = await aliasRepository.createAlias(url);
 
-    if (result.alias.isEmpty) {
+    if (result != null) {
       value = value.copyWith(
-        error: 'Sorry, Alias not created. Please try again...',
-        status: StateStatus.error,
+        aliases: [...value.aliases, result],
+        status: StateStatus.success,
       );
       return;
     }
 
     value = value.copyWith(
-      aliases: [...value.aliases, result],
-      status: StateStatus.success,
+      error: 'Sorry, Alias not created. Please try again...',
+      status: StateStatus.error,
     );
   }
 }

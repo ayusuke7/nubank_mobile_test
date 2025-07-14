@@ -12,8 +12,8 @@ enum StateStatus {
 }
 
 abstract class BaseState extends Equatable {
-  final String? error;
   final StateStatus status;
+  final String? error;
 
   const BaseState({
     this.status = StateStatus.initial,

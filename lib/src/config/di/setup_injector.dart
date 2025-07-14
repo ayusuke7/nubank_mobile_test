@@ -14,7 +14,6 @@ void setupInjector() {
   it.registerFactory<Client>(
     () => DioClientImpl(dio: it()),
   );
-
   it.registerFactory<UrlShortenerApi>(
     () => UrlShortenerApi(client: it()),
   );
@@ -23,7 +22,6 @@ void setupInjector() {
       urlShorApi: it(),
     ),
   );
-
   it.registerLazySingleton<HomeController>(
     () => HomeController(aliasRepository: it()),
   );

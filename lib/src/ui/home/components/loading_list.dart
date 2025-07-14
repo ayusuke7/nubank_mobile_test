@@ -11,7 +11,6 @@ class ListLoadingComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      shrinkWrap: true,
       itemCount: length,
       itemBuilder: (context, _) {
         return Card(
